@@ -67,22 +67,19 @@ export function App() {
       <h1>
         {header} - <button onClick={handleNewGame}>New</button>
       </h1>
-      <ul>
-        {game.board.map(function (row, rowIndex) {
-          return row.map(function (column, columnIndex) {
-            return (
-              <li
-                key={columnIndex}
-                className={column === ' ' ? undefined : 'taken'}
-                onKeyDown={() => handleClickCell(rowIndex, columnIndex)}
-                onClick={() => handleClickCell(rowIndex, columnIndex)}
-              >
-                {game.board[rowIndex][columnIndex]}
-              </li>
-            )
-          })
-        })}
-      </ul>
+      <main>
+        {game.board.map((row, rowIndex) =>
+          row.map((column, columnIndex) => (
+            <button
+              key={columnIndex}
+              className={column === ' ' ? undefined : 'taken'}
+              onClick={() => handleClickCell(rowIndex, columnIndex)}
+            >
+              {game.board[rowIndex][columnIndex]}
+            </button>
+          ))
+        )}
+      </main>
     </div>
   )
 }
