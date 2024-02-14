@@ -13,7 +13,9 @@ export function App() {
 
   async function handleClickCell(row: number, column: number) {
     console.log({ row, column })
-
+    if (game.id === null || game.winner || game.board[row][column] !== ' ') {
+      return
+    }
     const url = `https://sdg-tic-tac-toe-api.herokuapp.com/game/${game.id}`
 
     const body = { row, column }
