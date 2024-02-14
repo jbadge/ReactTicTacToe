@@ -34,7 +34,6 @@ export function App() {
   }
 
   async function handleNewGame() {
-    // Make a POST request to ask for a new game
     const response = await fetch(
       'https://sdg-tic-tac-toe-api.herokuapp.com/game',
       {
@@ -49,16 +48,7 @@ export function App() {
     }
   }
 
-  // function header() {
-  //   if (game.winner) {
-  //     alert(`${game.winner} is the winner`)
-  //   } else {
-  //     console.log('Tic Tac Toe')
-  //   }
-  // }
-
   const header = game.winner ? `${game.winner} is the winner` : 'Tic Tac Toe'
-  // Create switch statement to handle TIEs
 
   return (
     <div>
@@ -71,6 +61,7 @@ export function App() {
             return (
               <li
                 key={columnIndex}
+                className={column === ' ' ? undefined : 'taken'}
                 onKeyDown={() => handleClickCell(rowIndex, columnIndex)}
                 onClick={() => handleClickCell(rowIndex, columnIndex)}
               >
