@@ -47,68 +47,36 @@ export function App() {
     }
   }
 
+  // function header() {
+  //   if (game.winner) {
+  //     alert(`${game.winner} is the winner`)
+  //   } else {
+  //     console.log('Tic Tac Toe')
+  //   }
+  // }
+
   const header = game.winner ? `${game.winner} is the winner` : 'Tic Tac Toe'
+  // Create switch statement to handle TIEs
 
   return (
     <div>
       <h1>
-        {header} - {game.id} <button onClick={handleNewGame}>New</button>
+        {header} - <button onClick={handleNewGame}>New</button>
       </h1>
       <ul>
-        <li
-          onKeyDown={() => handleClickCell(0, 0)}
-          onClick={() => handleClickCell(0, 0)}
-        >
-          {game.board[0][0]}
-        </li>
-        <li
-          onKeyDown={() => handleClickCell(0, 1)}
-          onClick={() => handleClickCell(0, 1)}
-        >
-          {game.board[0][1]}
-        </li>
-        <li
-          onKeyDown={() => handleClickCell(0, 2)}
-          onClick={() => handleClickCell(0, 2)}
-        >
-          {game.board[0][2]}
-        </li>
-        <li
-          onKeyDown={() => handleClickCell(1, 0)}
-          onClick={() => handleClickCell(1, 0)}
-        >
-          {game.board[1][0]}
-        </li>
-        <li
-          onKeyDown={() => handleClickCell(1, 1)}
-          onClick={() => handleClickCell(1, 1)}
-        >
-          {game.board[1][1]}
-        </li>
-        <li
-          onKeyDown={() => handleClickCell(1, 2)}
-          onClick={() => handleClickCell(1, 2)}
-        >
-          {game.board[1][2]}
-        </li>
-        <li
-          onKeyDown={() => handleClickCell(2, 0)}
-          onClick={() => handleClickCell(2, 0)}
-        >
-          {game.board[2][0]}
-        </li>
-        <li
-          onKeyDown={() => handleClickCell(2, 1)}
-          onClick={() => handleClickCell(2, 1)}
-        >
-          {game.board[2][1]}
-        </li>
-        <li
-          onKeyDown={() => handleClickCell(2, 2)}
-          onClick={() => handleClickCell(2, 2)}
-        >
-          {game.board[2][2]}
-        </li>
+        {game.board.map(function (row, rowIndex) {
+          return row.map(function (column, columnIndex) {
+            return (
+              <li
+                key={columnIndex}
+                onKeyDown={() => handleClickCell(rowIndex, columnIndex)}
+                onClick={() => handleClickCell(rowIndex, columnIndex)}
+              >
+                {game.board[rowIndex][columnIndex]}
+              </li>
+            )
+          })
+        })}
       </ul>
     </div>
   )
