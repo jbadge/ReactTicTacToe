@@ -1,7 +1,19 @@
 import React, { useState } from 'react'
 
+type Square = 'X' | 'O' | ' '
+
+type Row = [Square, Square, Square]
+
+type Board = [Row, Row, Row]
+
+type Game = {
+  board: Board
+  id: null | number
+  winner: null | string
+}
+
 export function App() {
-  const [game, setGame] = useState({
+  const [game, setGame] = useState<Game>({
     board: [
       [' ', ' ', ' '],
       [' ', ' ', ' '],
@@ -27,7 +39,7 @@ export function App() {
     })
 
     if (response.ok) {
-      const newGameState = await response.json()
+      const newGameState = (await response.json()) as Game
 
       setGame(newGameState)
     }
@@ -43,7 +55,7 @@ export function App() {
     )
 
     if (response.ok) {
-      const newGameState = await response.json()
+      const newGameState = (await response.json()) as Game
       setGame(newGameState)
     }
   }
