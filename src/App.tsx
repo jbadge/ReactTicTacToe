@@ -23,7 +23,7 @@ export function App() {
     winner: null,
   })
 
-  async function handleClickCell(row: number, column: number) {
+  async function recordMove(row: number, column: number) {
     console.log({ row, column })
     if (game.id === null || game.winner || game.board[row][column] !== ' ') {
       return
@@ -75,6 +75,7 @@ export function App() {
               rowIndex={rowIndex}
               columnIndex={columnIndex}
               cell={game.board[rowIndex][columnIndex]}
+              recordMove={recordMove}
             />
           ))
         )}
@@ -87,13 +88,19 @@ type CellProps = {
   cell: string
   rowIndex: number
   columnIndex: number
+  recordMove: (row: number, column: number) => void
 }
 
 function Cell(props: CellProps) {
+  function handleClickCell() {
+    console.log(`You clicked on ${props.rowIndex} - ${props.columnIndex}`)
+    props.recordMove(props.rowIndex, props.columnIndex)
+  }
+
   return (
     <button
       className={props.cell === ' ' ? undefined : 'taken'}
-      // onClick={() => handleClickCell(props.rowIndex, props.columnIndex)}
+      onClick={handleClickCell}
     >
       {props.cell}
     </button>
