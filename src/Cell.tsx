@@ -4,12 +4,10 @@ type CellProps = {
   cell: string
   rowIndex: number
   columnIndex: number
-  recordMove: (row: number, column: number) => void
+  recordMove: (_row: number, _column: number) => void
 }
 
-export function Cell(props: CellProps) {
-  const { cell, rowIndex, columnIndex, recordMove } = props
-
+export function Cell({ cell, rowIndex, columnIndex, recordMove }: CellProps) {
   function handleClickCell() {
     console.log(`You clicked on ${rowIndex} - ${columnIndex}`)
     recordMove(rowIndex, columnIndex)
