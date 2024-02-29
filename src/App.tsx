@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Cell } from './Cell'
 
 type Square = 'X' | 'O' | ' '
 
@@ -81,28 +82,5 @@ export function App() {
         )}
       </main>
     </div>
-  )
-}
-
-type CellProps = {
-  cell: string
-  rowIndex: number
-  columnIndex: number
-  recordMove: (row: number, column: number) => void
-}
-
-function Cell(props: CellProps) {
-  function handleClickCell() {
-    console.log(`You clicked on ${props.rowIndex} - ${props.columnIndex}`)
-    props.recordMove(props.rowIndex, props.columnIndex)
-  }
-
-  return (
-    <button
-      className={props.cell === ' ' ? undefined : 'taken'}
-      onClick={handleClickCell}
-    >
-      {props.cell}
-    </button>
   )
 }
